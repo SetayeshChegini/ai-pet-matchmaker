@@ -1,122 +1,77 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
+    <main className="app">
+      <section className="hero">
+        <div className="hero-content">
+          <p className="tag">AI-Powered Adoption Assistant</p>
+
+          <h1>Find the Right Pet for Your Lifestyle</h1>
+
+          <p className="hero-text">
+            AI Pet Adoption Matchmaker helps users find pets that fit their
+            home, schedule, activity level, and experience.
           </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+          <div className="buttons">
+            <a href="#questionnaire" className="primary-btn">
+              Start Matching
+            </a>
+            <a href="#features" className="secondary-btn">
+              View Features
+            </a>
+          </div>
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
+
+        <div className="hero-card">
+          <h2>Best Match</h2>
+          <p className="pet-name">Luna</p>
+          <p>Calm adult cat</p>
+          <p>Apartment friendly</p>
+          <div className="score">92% Match</div>
         </div>
       </section>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+      <section id="features" className="features">
+        <h2>Project Features</h2>
+
+        <div className="feature-grid">
+          <div className="feature-card">
+            <h3>Lifestyle Questionnaire</h3>
+            <p>
+              Users answer questions about housing, schedule, activity level,
+              and pet experience.
+            </p>
+          </div>
+
+          <div className="feature-card">
+            <h3>Recommendation Algorithm</h3>
+            <p>
+              The app calculates match scores based on user answers and pet
+              personality traits.
+            </p>
+          </div>
+
+          <div className="feature-card">
+            <h3>AI Explanation</h3>
+            <p>
+              The system explains why each pet is a good match using simple and
+              helpful language.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="questionnaire" className="questionnaire-preview">
+        <h2>Questionnaire Coming Next</h2>
+        <p>
+          In the next step, we will build the form that asks users about their
+          lifestyle and recommends pets.
+        </p>
+      </section>
+    </main>
+  );
 }
 
-export default App
+export default App;
