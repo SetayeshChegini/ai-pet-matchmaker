@@ -1,6 +1,8 @@
 import { useMemo, useState } from 'react'
 import './App.css'
 
+const baseUrl = import.meta.env.BASE_URL
+
 const questions = [
   {
     id: 'home',
@@ -20,7 +22,7 @@ const questions = [
     helper: 'We use this to find a companion whose independence fits your schedule.',
     options: [
       { value: 'low', label: 'Less than 4 hours', detail: 'I am home often or have flexible support', icon: 'sun' },
-      { value: 'medium', label: '4â€“8 hours', detail: 'A typical workday with time before and after', icon: 'clock' },
+      { value: 'medium', label: '4-8 hours', detail: 'A typical workday with time before and after', icon: 'clock' },
       { value: 'high', label: 'More than 8 hours', detail: 'I need a more independent companion', icon: 'moon' },
     ],
   },
@@ -97,7 +99,7 @@ const pets = [
     grooming: 'low',
     allergyFriendly: false,
     traits: ['Gentle', 'Independent', 'Quiet home'],
-    image: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=1000&q=85',
+    image: `${baseUrl}pets/luna.jpg`,
     description: 'Luna is a soft-hearted observer who loves sunny windows, slow blinks and curling up nearby while you work.',
   },
   {
@@ -115,7 +117,7 @@ const pets = [
     grooming: 'high',
     allergyFriendly: true,
     traits: ['Affectionate', 'Smart', 'Lower shedding'],
-    image: 'https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=1000&q=85',
+    image: `${baseUrl}pets/milo.jpg`,
     description: 'Milo is a bright, affectionate companion who enjoys neighborhood walks, puzzle toys and being part of the family.',
   },
   {
@@ -133,7 +135,7 @@ const pets = [
     grooming: 'medium',
     allergyFriendly: false,
     traits: ['Playful', 'Social', 'Adventure-ready'],
-    image: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=1000&q=85',
+    image: `${baseUrl}pets/scout.jpg`,
     description: 'Scout is a joyful adventure buddy who thrives on training games, long walks and plenty of time with his people.',
   },
   {
@@ -151,7 +153,7 @@ const pets = [
     grooming: 'medium',
     allergyFriendly: true,
     traits: ['Curious', 'Calm', 'Apartment-friendly'],
-    image: 'https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?auto=format&fit=crop&w=1000&q=85',
+    image: `${baseUrl}pets/poppy.jpg`,
     description: 'Poppy is a curious little companion who enjoys gentle enrichment, fresh greens and a peaceful indoor space.',
   },
   {
@@ -169,7 +171,7 @@ const pets = [
     grooming: 'low',
     allergyFriendly: false,
     traits: ['Mellow', 'House-trained', 'Senior sweetheart'],
-    image: 'https://images.unsplash.com/photo-1495360010541-f48722b34f7d?auto=format&fit=crop&w=1000&q=85',
+    image: `${baseUrl}pets/theo.jpg`,
     description: 'Theo is a mellow senior gentleman looking for a steady routine, a soft bed and someone to share quiet evenings with.',
   },
   {
@@ -187,7 +189,7 @@ const pets = [
     grooming: 'medium',
     allergyFriendly: false,
     traits: ['Loyal', 'Trainable', 'Outdoor-loving'],
-    image: 'https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1000&q=85',
+    image: `${baseUrl}pets/nala.jpg`,
     description: 'Nala is a loyal, intelligent dog who will flourish with structure, continued training and room to explore.',
   },
 ]
@@ -281,9 +283,9 @@ function PetCard({ pet, score, rank, answers, onOpen }) {
         <div className="pet-heading">
           <div>
             <h3>{pet.name}</h3>
-            <p>{pet.breed} Â· {pet.age}</p>
+            <p>{pet.breed} | {pet.age}</p>
           </div>
-          <span className="pet-gender" aria-label={pet.gender}>{pet.gender === 'Female' ? 'â™€' : 'â™‚'}</span>
+          <span className="pet-gender" aria-label={pet.gender}>{pet.gender === 'Female' ? '\u2640' : '\u2642'}</span>
         </div>
         <div className="pet-location"><Icon name="location" size={16} /> {pet.location}</div>
         <div className="trait-list">
@@ -385,7 +387,7 @@ function App() {
           <div className="hero-copy">
             <div className="eyebrow"><Icon name="sparkle" size={16} /> AI-powered compatibility</div>
             <h1>Meet the pet who <em>fits your life.</em></h1>
-            <p className="hero-lead">A thoughtful match is about more than a cute face. Tell us about your routine, home and experienceâ€”we will find companions ready to thrive with you.</p>
+            <p className="hero-lead">A thoughtful match is about more than a cute face. Tell us about your routine, home and experience - we will find companions ready to thrive with you.</p>
             <div className="hero-actions">
               <button className="primary-button" type="button" onClick={beginQuiz}>Start your match <Icon name="arrow" size={19} /></button>
               <button className="secondary-button" type="button" onClick={() => scrollTo('how-it-works')}>See how it works</button>
@@ -404,13 +406,13 @@ function App() {
             <div className="hero-image-card">
               <img src={pets[1].image} alt="Milo, a mini poodle mix" />
               <div className="floating-pet-name">
-                <span><strong>Milo</strong><small>Mini poodle mix Â· 3 years</small></span>
+                <span><strong>Milo</strong><small>Mini poodle mix | 3 years</small></span>
                 <span className="heart-button"><Icon name="heart" size={19} /></span>
               </div>
             </div>
             <div className="floating-match-card">
               <span className="mini-score">94%</span>
-              <span><strong>Great match</strong><small>Balanced energy Â· Apartment-friendly</small></span>
+              <span><strong>Great match</strong><small>Balanced energy | Apartment-friendly</small></span>
             </div>
             <div className="floating-ai-card"><Icon name="sparkle" size={18} /> Matched to your lifestyle</div>
           </div>
@@ -527,7 +529,7 @@ function App() {
               <div>
                 <div className="eyebrow"><Icon name="sparkle" size={16} /> Your personalized results</div>
                 <h2>Your strongest <em>matches.</em></h2>
-                <p>These pets align most closely with your lifestyle profile. Compatibility is a starting pointâ€”the real connection happens when you meet.</p>
+                <p>These pets align most closely with your lifestyle profile. Compatibility is a starting point - the real connection happens when you meet.</p>
               </div>
               <button className="retake-button" type="button" onClick={retakeQuiz}>Retake quiz</button>
             </div>
@@ -557,7 +559,7 @@ function App() {
               <div className="eyebrow">Ready to be discovered</div>
               <h2>Wonderful pets.<br /><em>Real personalities.</em></h2>
             </div>
-            <p>Every profile includes care needs and temperamentâ€”not just a photoâ€”so you can imagine everyday life together.</p>
+            <p>Every profile includes care needs and temperament - not just a photo - so you can imagine everyday life together.</p>
           </div>
           <div className="all-pets-grid">
             {pets.slice(0, 4).map((pet) => <PetCard key={pet.id} pet={pet} onOpen={openPet} />)}
@@ -576,7 +578,7 @@ function App() {
       <footer>
         <a className="brand footer-brand" href="#top"><span className="brand-mark"><Icon name="paw" size={22} /></span><span>Paw<span>Pair</span></span></a>
         <p>Thoughtful technology for happier adoptions.</p>
-        <span>Portfolio MVP Â· Explainable recommendation model</span>
+        <span>Portfolio MVP | Explainable recommendation model</span>
       </footer>
 
       {selectedPet && (
@@ -587,7 +589,7 @@ function App() {
             <div className="modal-content">
               <div className="eyebrow">Meet your potential companion</div>
               <h2 id="pet-modal-title">{selectedPet.name}</h2>
-              <p className="modal-meta">{selectedPet.breed} Â· {selectedPet.age} Â· {selectedPet.gender}</p>
+              <p className="modal-meta">{selectedPet.breed} | {selectedPet.age} | {selectedPet.gender}</p>
               <p className="modal-description">{selectedPet.description}</p>
               <div className="modal-traits">{selectedPet.traits.map((trait) => <span key={trait}>{trait}</span>)}</div>
               {selectedPet.explanation && (
@@ -598,7 +600,7 @@ function App() {
                 </div>
               )}
               <button className="primary-button wide" type="button">Request a meet-and-greet <Icon name="arrow" size={19} /></button>
-              <small className="demo-note">Demo actionâ€”no request will be sent.</small>
+              <small className="demo-note">Demo action - no request will be sent.</small>
             </div>
           </article>
         </div>

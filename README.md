@@ -1,4 +1,4 @@
-# PawPair â€” AI Pet Adoption Matchmaker
+# PawPair - AI Pet Adoption Matchmaker
 
 PawPair is a responsive pet-adoption matching experience that recommends compatible pets from an adopter's lifestyle profile. The application scores home type, schedule, activity level, pet-care experience, grooming preferences, allergies, and species preference, then explains why each recommendation may fit.
 
