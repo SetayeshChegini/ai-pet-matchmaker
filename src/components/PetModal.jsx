@@ -45,7 +45,7 @@ export default function PetModal({ pet, onClose }) {
       <article ref={dialogRef} className="pet-modal" role="dialog" aria-modal="true" aria-labelledby="pet-modal-title" onMouseDown={(event) => event.stopPropagation()}>
         <button ref={closeRef} className="modal-close" type="button" aria-label="Close pet details" onClick={onClose}><Icon name="close" /></button>
         <div className="modal-image">
-          <img src={pet.image} alt={`${pet.name}, a ${pet.breed}`} />
+          <img src={pet.image} alt={`${pet.name}, a ${pet.breed}`} style={{ objectPosition: pet.imagePosition }} />
           {pet.score !== null && pet.score !== undefined && <span>{pet.score}% compatible</span>}
         </div>
         <div className="modal-content">
@@ -80,4 +80,5 @@ export default function PetModal({ pet, onClose }) {
     </div>
   )
 }
+
 

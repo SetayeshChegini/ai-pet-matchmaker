@@ -805,13 +805,6 @@ h2 em {
   gap: 12px;
 }
 
-.auto-advance-note {
-  align-self: center;
-  color: #84928d;
-  font-size: 9px;
-  text-align: center;
-}
-
 .back-button,
 .retake-button {
   cursor: pointer;
@@ -1940,5 +1933,6 @@ footer > span:last-child {
     font-size: 44px;
   }
 }
+
 
 

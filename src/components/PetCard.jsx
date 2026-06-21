@@ -7,7 +7,7 @@ export default function PetCard({ pet, score, rank, answers, onOpen }) {
   return (
     <article className={`pet-card ${rank === 1 ? 'top-match' : ''}`}>
       <div className="pet-photo-wrap">
-        <img src={pet.image} alt={`${pet.name}, a ${pet.breed}`} className="pet-photo" />
+        <img src={pet.image} alt={`${pet.name}, a ${pet.breed}`} className="pet-photo" style={{ objectPosition: pet.imagePosition }} />
         {rank === 1 && <span className="best-match"><Icon name="sparkle" size={15} /> Best match</span>}
         {rank > 1 && <span className="rank-badge">#{rank}</span>}
         {score !== undefined && <span className="match-score">{score}% match</span>}
@@ -37,4 +37,5 @@ export default function PetCard({ pet, score, rank, answers, onOpen }) {
     </article>
   )
 }
+
 

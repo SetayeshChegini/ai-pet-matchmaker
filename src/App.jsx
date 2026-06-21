@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import Icon from './components/Icon'
 import PetCard from './components/PetCard'
 import PetModal from './components/PetModal'
@@ -18,12 +18,8 @@ function App() {
   const [showAllMatches, setShowAllMatches] = useState(false)
   const [shareStatus, setShareStatus] = useState(hasSharedResult ? 'Shared result loaded' : '')
   const [selectedPet, setSelectedPet] = useState(null)
-  const advanceTimer = useRef(null)
-
   const results = useMemo(() => rankPets(pets, answers), [answers])
   const visibleResults = showAllMatches ? results : results.slice(0, 3)
-
-  useEffect(() => () => window.clearTimeout(advanceTimer.current), [])
 
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -37,7 +33,6 @@ function App() {
   }
 
   const beginQuiz = () => {
-    window.clearTimeout(advanceTimer.current)
     clearSharedUrl()
     setQuizStarted(true)
     setShowResults(false)
@@ -48,20 +43,11 @@ function App() {
   }
 
   const chooseOption = (value) => {
-    const questionIndex = currentQuestion
-    const question = questions[questionIndex]
-    window.clearTimeout(advanceTimer.current)
+    const question = questions[currentQuestion]
     setAnswers((current) => ({ ...current, [question.id]: value }))
-
-    if (questionIndex < questions.length - 1) {
-      advanceTimer.current = window.setTimeout(() => {
-        setCurrentQuestion((current) => current === questionIndex ? current + 1 : current)
-      }, 450)
-    }
   }
 
   const nextQuestion = () => {
-    window.clearTimeout(advanceTimer.current)
     if (currentQuestion === questions.length - 1) {
       setShowResults(true)
       setShowAllMatches(false)
@@ -72,12 +58,10 @@ function App() {
   }
 
   const previousQuestion = () => {
-    window.clearTimeout(advanceTimer.current)
     setCurrentQuestion((current) => Math.max(0, current - 1))
   }
 
   const retakeQuiz = () => {
-    window.clearTimeout(advanceTimer.current)
     clearSharedUrl()
     setAnswers({})
     setCurrentQuestion(0)
@@ -161,15 +145,15 @@ function App() {
             <div className="hero-blob hero-blob-one"></div>
             <div className="hero-blob hero-blob-two"></div>
             <div className="hero-image-card">
-              <img src={pets[1].image} alt="Milo, a mini poodle mix" />
+              <img src={pets[1].image} alt={`Milo, a ${pets[1].breed}`} style={{ objectPosition: pets[1].imagePosition }} />
               <div className="floating-pet-name">
-                <span><strong>Milo</strong><small>Mini poodle mix | 3 years</small></span>
+                <span><strong>Milo</strong><small>{pets[1].breed} | {pets[1].age}</small></span>
                 <span className="heart-button"><Icon name="heart" size={19} /></span>
               </div>
             </div>
             <div className="floating-match-card">
               <span className="mini-score">94%</span>
-              <span><strong>Great match</strong><small>Balanced energy | Apartment-friendly</small></span>
+              <span><strong>Great match</strong><small>Friendly energy | People-loving</small></span>
             </div>
             <div className="floating-ai-card"><Icon name="sparkle" size={18} /> Matched to your lifestyle</div>
           </div>
@@ -233,7 +217,6 @@ function App() {
                 </div>
                 <div className="quiz-controls">
                   <button type="button" className="back-button" disabled={currentQuestion === 0} onClick={previousQuestion}>Back</button>
-                  <span className="auto-advance-note">Choices advance automatically</span>
                   <button type="button" className="next-button" disabled={!answerSelected} onClick={nextQuestion}>{currentQuestion === questions.length - 1 ? 'See my matches' : 'Continue'} <Icon name="arrow" size={18} /></button>
                 </div>
               </div>
@@ -297,4 +280,5 @@ function App() {
 }
 
 export default App
+
 

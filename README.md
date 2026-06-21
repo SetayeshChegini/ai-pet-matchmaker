@@ -25,7 +25,7 @@ This MVP keeps recommendations deterministic and inspectable. A production versi
 
 - **Schedule and home fit carry the most weight** because a mismatch in daily availability or living space is harder to solve than a grooming preference.
 - **Scores stay explainable**: the interface shows the signals behind each recommendation and an honest consideration instead of presenting a black-box answer.
-- **The questionnaire auto-advances** to keep the seven-step flow quick, while Back and Continue remain available for keyboard users and people who prefer explicit control.
+- **Every choice is confirmed with Continue**, giving users time to review or change a selection before moving to the next question.
 - **Results are encoded in the URL** so users can share or bookmark a match without creating an account or storing personal answers on a server.
 - **The visual system uses warm coral and deep green** to feel welcoming and adoption-focused without relying on the bright blue palette common to generic technology demos.
 - **All six pets remain discoverable** both in browsing and ranked results so lower-scoring options are explained rather than silently hidden.
@@ -48,5 +48,6 @@ npm run build
 ## Stack
 
 React 19, Vite, JavaScript, CSS, and an explainable weighted recommendation model.
+
 
 
